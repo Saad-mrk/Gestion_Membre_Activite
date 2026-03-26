@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Accueil";
+}
+
+<div class="container mt-4">
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content text-center">
+            <h1>Gestion du Club Étudiant</h1>
+            <p>
+                Bienvenue sur votre espace d'administration. Gérez facilement vos membres, 
+                organisez vos événements et suivez les inscriptions en quelques clics.
+            </p>
+        </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="row g-4">
+        <!-- Membres Card -->
+        <div class="col-md-4">
+            <div class="card-modern card-primary">
+                <div class="card-icon">
+                    👥
+                </div>
+                <h3>Membres</h3>
+                <p>Ajoutez de nouveaux étudiants au club et consultez la liste des adhérents actuels.</p>
+                <div class="btn-group-modern">
+                    <a asp-controller="Membres" asp-action="Index" class="btn-modern btn-primary-modern">
+                        Voir les membres
+                    </a>
+                    <a asp-controller="Membres" asp-action="Create" class="btn-modern btn-outline-modern">
+                        Ajouter un membre
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activités Card -->
+        <div class="col-md-4">
+            <div class="card-modern card-success">
+                <div class="card-icon">
+                    📅
+                </div>
+                <h3>Activités</h3>
+                <p>Planifiez de nouveaux événements, réunions ou ateliers pour animer la vie du club.</p>
+                <div class="btn-group-modern">
+                    <a asp-controller="Activites" asp-action="Index" class="btn-modern btn-success-modern">
+                        Voir les activités
+                    </a>
+                    <a asp-controller="Activites" asp-action="Create" class="btn-modern btn-outline-modern">
+                        Créer une activité
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscriptions Card -->
+        <div class="col-md-4">
+            <div class="card-modern card-warning">
+                <div class="card-icon">
+                    ✅
+                </div>
+                <h3>Inscriptions</h3>
+                <p>Associez rapidement vos membres inscrits aux différentes activités organisées.</p>
+                <div class="btn-group-modern">
+                    <a asp-controller="Inscriptions" asp-action="Index" class="btn-modern btn-warning-modern">
+                        Voir les inscriptions
+                    </a>
+                    <a asp-controller="Inscriptions" asp-action="Create" class="btn-modern btn-outline-modern">
+                        Inscrire un membre
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

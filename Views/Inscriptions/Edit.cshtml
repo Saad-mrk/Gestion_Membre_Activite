@@ -1,0 +1,45 @@
+@model Gestion_des_membres_et_activités_d_un_club.Models.Inscription
+
+@{
+    ViewData["Title"] = "Modifier l'Inscription";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border rounded-3">
+                <div class="card-header bg-warning py-3 text-dark">
+                    <h3 class="card-title mb-0">? Modifier l'Inscription</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="DateInscription" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label fw-bold">Sélectionner un Membre</label>
+                            <select asp-for="MembreId" class="form-control" asp-items="ViewBag.MembreId"></select>
+                            <span asp-validation-for="MembreId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-bold">Sélectionner une Activité</label>
+                            <select asp-for="ActiviteId" class="form-control" asp-items="ViewBag.ActiviteId"></select>
+                            <span asp-validation-for="ActiviteId" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Annuler</a>
+                            <button type="submit" class="btn btn-warning px-4">Enregistrer les modifications</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

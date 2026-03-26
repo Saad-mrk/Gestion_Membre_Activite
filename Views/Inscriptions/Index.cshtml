@@ -1,0 +1,42 @@
+@model IEnumerable<Gestion_des_membres_et_activités_d_un_club.Models.Inscription>
+
+@{
+    ViewData["Title"] = "Liste des inscriptions";
+}
+
+<h2>Liste des inscriptions</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-warning">Inscrire un membre</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Membre</th>
+            <th>Activité</th>
+            <th>Date d'inscription</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Membre?.Nom @item.Membre?.Prenom</td>
+                <td>@item.Activite?.Nom</td>
+                <td>@item.DateInscription.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Modifier</a>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Souhaitez-vous vraiment annuler cette inscription ?');">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+    
