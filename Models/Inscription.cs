@@ -12,7 +12,7 @@ namespace Gestion_des_membres_et_activités_d_un_club.Models
         [Required]
         public int ActiviteId { get; set; }
 
-        public DateTime DateInscription { get; set; } = DateTime.Now;
+        public DateTime DateInscription { get; set; } = DateTime.UtcNow;
 
         public virtual Membre Membre { get; set; }
         public virtual Activite Activite { get; set; }

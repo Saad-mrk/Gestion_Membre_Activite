@@ -1,6 +1,6 @@
-using Gestion_des_membres_et_activités_d_un_club.Models;
+using Gestion_des_membres_et_activitÃ©s_d_un_club.Models;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,7 +11,7 @@ builder.Services.AddDbContext<ClubContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("ClubConnection")
         ?? throw new InvalidOperationException("Connection string 'ClubConnection' not found.");
 
-    options.UseSqlServer(connectionString);
+    options.UseNpgsql(connectionString);
 });
 
 var app = builder.Build();
