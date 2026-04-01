@@ -14,10 +14,18 @@ namespace Gestion_des_membres_et_activités_d_un_club.Controllers
         }
 
         // GET: Membres
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            var membres = _context.Membres.ToList();
-            return View(membres);
+            ViewData["CurrentFilter"] = searchString;
+            var membres = from m in _context.Membres
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                membres = membres.Where(s => s.Nom.Contains(searchString) || s.Prenom.Contains(searchString) || s.Email.Contains(searchString));
+            }
+
+            return View(membres.ToList());
         }
 
         // GET: Membres/Create

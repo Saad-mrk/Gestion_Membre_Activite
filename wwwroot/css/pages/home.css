@@ -37,7 +37,7 @@ main .container.mt-4 {
     padding: 3rem;
     background-image:
         linear-gradient(120deg, rgba(7, 24, 39, 0.78), rgba(11, 78, 109, 0.42)),
-        url('/images/Gemini_Generated_Image_v13rbrv13rbrv13r.png');
+        url('/images/Gemini_Generated_Image_v13rbrv13rbrv13r.jpeg');
     background-size: cover;
     background-position: center;
     box-shadow: var(--home-shadow);

@@ -1,4 +1,4 @@
-@model IEnumerable<Gestion_des_membres_et_activités_d_un_club.Models.Membre>
+ï»¿@model IEnumerable<Gestion_des_membres_et_activitÃ©s_d_un_club.Models.Membre>
 
 @{  
     ViewData["Title"] = "Liste des membres";
@@ -6,15 +6,37 @@
 
 <h2>Liste des membres</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Ajouter un membre</a>
-</p>
+<div class="row mb-4 align-items-center">
+    <div class="col-md-6">
+        <a asp-action="Create" class="btn btn-primary d-inline-flex align-items-center gap-2 shadow-sm">
+            <span>&#128100;</span> Ajouter un membre
+        </a>
+    </div>
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="input-group shadow-sm rounded-pill overflow-hidden">
+            <input type="text" name="searchString" class="form-control border-0 ps-4" 
+                   placeholder="Rechercher un membre (nom, email)..." 
+                   value="@ViewData["CurrentFilter"]" 
+                   list="membresList"
+                   style="height: 48px; background-color: #f8f9fa;" />
+            <datalist id="membresList"> 
+               @foreach (var item in Model.Take(8))
+{
+    <option value="@item.Nom @item.Prenom (@item.Email)"></option>
+}
+            </datalist>
+            <button type="submit" class="btn btn-primary px-4 border-0" style="background-color: var(--primary);">
+                <span>&#128269;</span>
+            </button>
+        </form>
+    </div>
+</div>
 
 <table class="table table-striped table-bordered">
     <thead>     
         <tr>
             <th>Nom</th>
-            <th>Prénom</th>
+            <th>PrÃ©nom</th>
             <th>Email</th>
             <th>Actions</th>
         </tr>
@@ -29,7 +51,8 @@
                 <td>
                     <div class="d-flex gap-2">
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Modifier</a>
-                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?');">
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('ÃŠtes-vous sÃ»r de vouloir supprimer ce membre ?');">
+                                @Html.AntiForgeryToken()
                             <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
                         </form>
                     </div>

@@ -13,10 +13,18 @@ namespace Gestion_des_membres_et_activités_d_un_club.Controllers
         }
 
         // GET: Activites
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            var activites = _context.Activites.ToList();
-            return View(activites);
+            ViewData["CurrentFilter"] = searchString;
+            var activites = from a in _context.Activites
+                           select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                activites = activites.Where(s => s.Nom.Contains(searchString) || s.Description.Contains(searchString));
+            }
+
+            return View(activites.ToList());
         }
 
         // GET: Activites/Create
@@ -44,7 +52,11 @@ namespace Gestion_des_membres_et_activités_d_un_club.Controllers
                 return RedirectToAction(nameof(Index)); // Redirige vers la liste des activités
             }
 
+<<<<<<< HEAD
             return View(activite);
+=======
+        return View(activite);
+>>>>>>> a8d32cb28977bab20e7fe017532cece8a5e79801
         }
 
         // GET: Activites/Edit/5

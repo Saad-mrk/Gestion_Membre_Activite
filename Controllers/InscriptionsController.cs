@@ -15,14 +15,22 @@ namespace Gestion_des_membres_et_activités_d_un_club.Controllers
         }
 
         // GET: Inscriptions
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            ViewData["CurrentFilter"] = searchString;
             var inscriptions = _context.Inscriptions
                 .Include(i => i.Membre)
                 .Include(i => i.Activite)
-                .ToList();
+                .AsQueryable();
 
-            return View(inscriptions);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                inscriptions = inscriptions.Where(s => s.Membre.Nom.Contains(searchString) 
+                                                 || s.Membre.Prenom.Contains(searchString) 
+                                                 || s.Activite.Nom.Contains(searchString));
+            }
+
+            return View(inscriptions.ToList());
         }
 
         // GET: Inscriptions/Create
