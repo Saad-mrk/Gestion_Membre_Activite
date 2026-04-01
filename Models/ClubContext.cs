@@ -9,7 +9,7 @@ namespace Gestion_des_membres_et_activités_d_un_club.Models
         {
         }
 
-        // Vos 3 tables dans la base de données
+    
         public DbSet<Membre> Membres { get; set; }
 
         public DbSet<Activite> Activites { get; set; }
